@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Quality Mechanical — Benton & Surrounding Area</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:        #0D1F3C;
+      --navy-dark:   #091629;
+      --navy-mid:    #132845;
+      --gold:        #C9A84C;
+      --gold-light:  #E2C06A;
+      --gold-dim:    #8A6F2E;
+      --cream:       #F2EDD7;
+      --cream-dim:   #B8B09A;
+      --border:      rgba(201,168,76,0.18);
+      --border-hard: rgba(201,168,76,0.35);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--navy-dark);
+      color: var(--cream);
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(9,22,41,0.97);
+      border-bottom: 1px solid var(--border);
+      padding: 0.8rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      backdrop-filter: blur(6px);
+    }
+
+    .nav-logo img {
+      height: 52px;
+      width: auto;
+      display: block;
+    }
+
+    .nav-links { display: flex; gap: 1.6rem; list-style: none; }
+    .nav-links a {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--cream-dim);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+
+    /* ── HERO ── */
+    .hero-logo {
+      position: absolute;
+      top: 50%;
+      right: 5%;
+      transform: translateY(-58%);
+      z-index: 2;
+      width: clamp(220px, 28vw, 380px);
+      opacity: 0.92;
+      filter: drop-shadow(0 8px 32px rgba(0,0,0,0.6));
+      pointer-events: none;
+    }
+
+    .hero {
+      position: relative;
+      min-height: 95vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 0 5rem;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('hero-hands.png');
+      background-size: cover;
+      background-position: center 30%;
+      z-index: 0;
+    }
+
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(9,22,41,0.35) 0%,
+        rgba(9,22,41,0.5) 40%,
+        rgba(9,22,41,0.92) 75%,
+        rgba(9,22,41,1) 100%
+      );
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      width: 100%;
+    }
+
+    .hero-eyebrow {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 32px; height: 1px;
+      background: var(--gold);
+    }
+
+    .hero h1 {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(2.8rem, 9vw, 5.5rem);
+      font-weight: 700;
+      line-height: 1.0;
+      letter-spacing: 0.01em;
+      text-transform: uppercase;
+      color: var(--cream);
+      margin-bottom: 1.4rem;
+    }
+    .hero h1 em { font-style: normal; color: var(--gold); }
+
+    .hero-sub {
+      font-size: 1.1rem;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--cream-dim);
+      max-width: 460px;
+      margin-bottom: 2.2rem;
+      line-height: 1.8;
+    }
+
+    .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      background: var(--gold);
+      color: var(--navy-dark);
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 0.85rem 1.8rem;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      border: 1px solid var(--border-hard);
+      color: var(--cream-dim);
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 0.85rem 1.6rem;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* ── SECTION BASE ── */
+    .section-wrap {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 5rem 1.5rem;
+    }
+
+    .section-label {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+      max-width: 80px;
+    }
+
+    h2 {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(1.9rem, 5vw, 2.9rem);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+      color: var(--cream);
+    }
+    h2 em { font-style: normal; color: var(--gold); }
+
+    .section-intro {
+      font-size: 1rem;
+      font-style: italic;
+      color: var(--cream-dim);
+      max-width: 540px;
+      margin-bottom: 2.6rem;
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    /* ── SERVICES ── */
+    #services { background: var(--navy-dark); }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+
+    .service-card {
+      background: var(--navy);
+      padding: 1.8rem 1.6rem;
+      transition: background 0.2s;
+    }
+    .service-card:hover { background: var(--navy-mid); }
+
+    .service-icon { font-size: 1.7rem; margin-bottom: 0.8rem; display: block; }
+
+    .service-card h3 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--cream);
+      margin-bottom: 0.45rem;
+    }
+    .service-card p { font-size: 0.87rem; color: var(--cream-dim); line-height: 1.65; }
+
+    /* ── IMAGE BREAK — ENGINE ── */
+    .image-break {
+      position: relative;
+      height: 460px;
+      overflow: hidden;
+    }
+    .image-break img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+    .image-break-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to right,
+        rgba(9,22,41,0.92) 0%,
+        rgba(9,22,41,0.6) 45%,
+        rgba(9,22,41,0.15) 100%
+      );
+      display: flex;
+      align-items: center;
+    }
+    .image-break-text {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      width: 100%;
+    }
+    .image-break-text blockquote {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(1.4rem, 3.5vw, 2.2rem);
+      font-weight: 600;
+      text-transform: uppercase;
+      line-height: 1.2;
+      color: var(--cream);
+      max-width: 420px;
+      letter-spacing: 0.03em;
+    }
+    .image-break-text blockquote em {
+      font-style: normal;
+      color: var(--gold);
+    }
+    .image-break-text cite {
+      display: block;
+      font-family: 'Source Serif 4', serif;
+      font-size: 0.85rem;
+      font-style: italic;
+      color: var(--cream-dim);
+      margin-top: 0.8rem;
+      font-weight: 300;
+    }
+
+    /* ── WHY ── */
+    #why { background: var(--navy-dark); }
+
+    .why-list {
+      border: 1px solid var(--border);
+    }
+    .why-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.2rem;
+      padding: 1.5rem 1.6rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .why-item:last-child { border-bottom: none; }
+
+    .why-num {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--gold);
+      opacity: 0.5;
+      min-width: 2rem;
+      line-height: 1;
+      padding-top: 0.15rem;
+    }
+    .why-text strong {
+      display: block;
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--cream);
+      margin-bottom: 0.25rem;
+    }
+    .why-text p { font-size: 0.88rem; color: var(--cream-dim); line-height: 1.65; }
+
+    .schedule-row {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+      margin-top: 1.8rem;
+    }
+    .badge {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.38rem 0.85rem;
+      border: 1px solid var(--border);
+      color: var(--cream-dim);
+    }
+    .badge.active {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: rgba(201,168,76,0.08);
+    }
+
+    /* ── IMAGE BREAK — MOWER ── */
+    .image-break-right .image-break-overlay {
+      background: linear-gradient(
+        to left,
+        rgba(9,22,41,0.92) 0%,
+        rgba(9,22,41,0.55) 45%,
+        rgba(9,22,41,0.1) 100%
+      );
+      justify-content: flex-end;
+    }
+    .image-break-right .image-break-text {
+      text-align: right;
+    }
+    .image-break-right blockquote {
+      margin-left: auto;
+    }
+
+    /* ── PRICING ── */
+    #pricing { background: var(--navy-dark); }
+
+    .rate-card {
+      background: var(--navy);
+      border: 1px solid var(--border);
+      padding: 2.2rem;
+    }
+    .rate-card p { font-size: 0.94rem; color: var(--cream-dim); margin-bottom: 0.75rem; }
+    .rate-card p:last-child { margin-bottom: 0; }
+    .rate-card strong { color: var(--cream); }
+
+    .rate-number {
+      font-family: 'Oswald', sans-serif;
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+      margin: 0.5rem 0 1rem;
+      display: block;
+    }
+    .rate-unit {
+      font-size: 1.1rem;
+      color: var(--cream-dim);
+      font-weight: 400;
+    }
+
+    /* ── CONTACT ── */
+    #contact {
+      background: var(--navy);
+      border-top: 1px solid var(--border);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .contact-block {
+      padding: 1.8rem;
+      border: 1px solid var(--border);
+      background: var(--navy-dark);
+    }
+    .contact-block h3 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.9rem;
+    }
+    .contact-block p {
+      font-size: 0.88rem;
+      color: var(--cream-dim);
+      margin-bottom: 1.2rem;
+      line-height: 1.65;
+    }
+
+    .whatsapp-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      background: #25D366;
+      color: #fff;
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 0.75rem 1.4rem;
+      transition: background 0.2s;
+    }
+    .whatsapp-btn:hover { background: #1eb556; }
+
+    .wa-icon { width: 17px; height: 17px; fill: #fff; flex-shrink: 0; }
+
+    .area-note {
+      font-size: 0.78rem;
+      color: var(--cream-dim);
+      font-style: italic;
+      margin-top: 0.8rem;
+      opacity: 0.7;
+    }
+
+    .checklist {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+    }
+    .checklist li {
+      font-size: 0.86rem;
+      color: var(--cream-dim);
+      display: flex;
+      gap: 0.5rem;
+    }
+    .checklist li span { color: var(--gold); flex-shrink: 0; }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 2rem 1.5rem;
+      border-top: 1px solid var(--border);
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold-dim);
+    }
+
+    /* ── REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 620px) {
+      .nav-links { display: none; }
+      .hero-logo { display: none; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .image-break { height: 320px; }
+      .image-break-right .image-break-overlay {
+        background: linear-gradient(to top, rgba(9,22,41,0.92) 0%, rgba(9,22,41,0.4) 100%);
+        align-items: flex-end;
+        padding-bottom: 2rem;
+      }
+      .image-break-right .image-break-text { text-align: left; }
+      .image-break-right blockquote { margin-left: 0; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <img src="quality-mechanical-logo.png" alt="Quality Mechanical">
+  </div>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <img class="hero-logo" src="quality-mechanical-logo.png" alt="Quality Mechanical logo">
+  <div class="hero-content">
+    <div class="hero-eyebrow">Benton &amp; Surrounding Area</div>
+    <h1>Honest work.<br><em>Fair prices.</em></h1>
+    <p class="hero-sub">
+      Weekend mechanical service for your car, truck, or equipment —
+      done right, explained plainly, priced like a neighbor.
+    </p>
+    <div class="hero-ctas">
+      <a href="#contact" class="btn-primary">
+        <svg class="wa-icon" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Message on WhatsApp
+      </a>
+      <a href="#services" class="btn-ghost">See What I Fix</a>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-wrap reveal">
+    <div class="section-label">What I Do</div>
+    <h2>Real work.<br><em>Weekend hours.</em></h2>
+    <p class="section-intro">Engine-out jobs, yard equipment, and everything in between — handled by someone who actually knows what he's doing.</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <span class="service-icon">🔩</span>
+        <h3>Engine Replacement</h3>
+        <p>Full engine swaps for cars, trucks, and light equipment. Sourced right, installed right, the first time.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🚗</span>
+        <h3>General Auto Repair</h3>
+        <p>Brakes, belts, fluids, diagnostics — the work most shops rush through. Done carefully, explained plainly.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🌿</span>
+        <h3>Mower Repair &amp; Maintenance</h3>
+        <p>Riding mowers, zero-turns, push mowers. Spring tune-ups and mid-season breakdowns both welcome.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🔧</span>
+        <h3>Small Engine &amp; Equipment</h3>
+        <p>Generators, ATVs, tillers, chainsaws. If it's got an engine and it won't go, let's talk.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🔍</span>
+        <h3>Pre-Purchase Inspection</h3>
+        <p>Before you buy that used truck or tractor, have someone look it over who has no stake in the deal.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🛠️</span>
+        <h3>Diagnostic &amp; Electrical</h3>
+        <p>Check engine lights, sensor issues, wiring problems. Get a straight answer on what's actually wrong before spending money.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IMAGE BREAK — ENGINE HANDS -->
+<div class="image-break">
+  <img src="engine-hands.png" alt="Mechanic working on a Chevrolet engine" loading="lazy">
+  <div class="image-break-overlay">
+    <div class="image-break-text">
+      <blockquote>
+        This isn't a<br>first-job mechanic.<br>
+        <em>This is trade experience.</em>
+      </blockquote>
+      <cite>Years in the shop. Weekends in your driveway.</cite>
+    </div>
+  </div>
+</div>
+
+<!-- WHY -->
+<section id="why">
+  <div class="section-wrap reveal">
+    <div class="section-label">Why Different</div>
+    <h2>Not your average<br><em>garage.</em></h2>
+    <p class="section-intro">Weekend hours. Straight talk. Prices that don't make you wince.</p>
+    <div class="why-list">
+      <div class="why-item">
+        <span class="why-num">01</span>
+        <div class="why-text">
+          <strong>Prices you can afford</strong>
+          <p>The going shop rate in this area can put real strain on a family budget. Rates are kept fair, and you'll always hear what's actually needed versus what can wait.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <span class="why-num">02</span>
+        <div class="why-text">
+          <strong>You talk to the mechanic</strong>
+          <p>No service writers, no relay race. You describe the problem, he looks at it, you get a straight answer. That's the whole process.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <span class="why-num">03</span>
+        <div class="why-text">
+          <strong>Weekend hours that work for you</strong>
+          <p>Saturdays and most Sundays — because most people can't take their car in on a Tuesday morning and lose a day of work to sit in a waiting room.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <span class="why-num">04</span>
+        <div class="why-text">
+          <strong>Years of real-world experience</strong>
+          <p>Trade experience built over years — the kind that handles the jobs that make other shops hesitate and gives you a straight answer instead of a runabout.</p>
+        </div>
+      </div>
+    </div>
+    <div class="schedule-row">
+      <span class="badge active">Saturdays</span>
+      <span class="badge active">Most Sundays</span>
+      <span class="badge">Benton Area</span>
+      <span class="badge">Columbia County</span>
+      <span class="badge">Sullivan County</span>
+    </div>
+  </div>
+</section>
+
+<!-- IMAGE BREAK — MOWER HANDS -->
+<div class="image-break image-break-right">
+  <img src="mower-hands.png" alt="Mechanic repairing a riding lawn mower" loading="lazy">
+  <div class="image-break-overlay">
+    <div class="image-break-text">
+      <blockquote>
+        Mowers. Generators.<br>Chainsaws. ATVs.<br>
+        <em>If it's got an engine,<br>let's talk.</em>
+      </blockquote>
+    </div>
+  </div>
+</div>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="section-wrap reveal">
+    <div class="section-label">Rates</div>
+    <h2>Fair work.<br><em>Fair price.</em></h2>
+    <p class="section-intro">No inflated labor rates. No surprise fees. Just honest pricing for honest work.</p>
+    <div class="rate-card">
+      <p><strong>Labor Rate</strong></p>
+      <span class="rate-number">$65 <span class="rate-unit">/ hour</span></span>
+      <p>That's a meaningful savings compared to most area shops. Parts are priced at cost — no markup on your rotors or your time.</p>
+      <p>Every job gets a <strong>free estimate</strong> before any work begins. You'll know what you're in for before a wrench is picked up. No surprises.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-wrap reveal">
+    <div class="section-label">Get In Touch</div>
+    <h2>Ready to <em>get it fixed?</em></h2>
+    <p class="section-intro">Message on WhatsApp — fastest response, and easy to send a photo of whatever's giving you trouble.</p>
+    <div class="contact-grid">
+      <div class="contact-block">
+        <h3>WhatsApp — Fastest Response</h3>
+        <p>Send a message, describe the problem, drop a photo. Response same day when available.</p>
+        <!-- Replace number with Tim's actual WhatsApp number -->
+        <a href="https://wa.me/15701234567" class="whatsapp-btn" target="_blank" rel="noopener">
+          <svg class="wa-icon" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Text on WhatsApp
+        </a>
+        <p class="area-note">Serving Benton, Sweet Valley, Unityville &amp; surrounding communities.</p>
+      </div>
+      <div class="contact-block">
+        <h3>What to Include</h3>
+        <p>When you message, it helps to know:</p>
+        <ul class="checklist">
+          <li><span>—</span> Year, make, and model of vehicle or equipment</li>
+          <li><span>—</span> What it's doing (or not doing)</li>
+          <li><span>—</span> Any warning lights or sounds</li>
+          <li><span>—</span> Photos are always helpful</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  Quality Mechanical &nbsp;·&nbsp; Benton &amp; Surrounding Area &nbsp;·&nbsp; Weekend Hours
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
