@@ -528,6 +528,27 @@
       color: var(--gold-dim);
     }
 
+    .credit-line {
+      margin-top: 0.9rem;
+      padding-top: 0.9rem;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .credit-line a {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.62rem;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: none;
+      color: rgba(255,255,255,0.25);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .credit-line a:hover {
+      color: rgba(201,168,76,0.6);
+    }
+
     /* ── REVEAL ── */
     .reveal {
       opacity: 0;
@@ -761,6 +782,9 @@
 <!-- FOOTER -->
 <footer>
   Quality Mechanical &nbsp;·&nbsp; Benton &amp; Surrounding Area &nbsp;·&nbsp; Weekend Hours
+  <div class="credit-line">
+    <a href="https://stewartjm-dev.github.io/covenant-creation-design/" target="_blank" rel="noopener">Built by Covenant Creation &amp; Design</a>
+  </div>
 </footer>
 
 <script>
